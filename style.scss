@@ -1,0 +1,89 @@
+/** effect from https://codepen.io/pavlovsk/pen/EwVRYy */
+#game-win, #game-over {
+  position: absolute;
+  height: 95vh;
+  width: 95vw;
+  display: none;
+  button {
+    z-index: 99;
+    background: #FFFF00;
+    cursor: pointer;
+    box-shadow: 4px 6px #e3de66;
+    margin: 10vh auto;
+    display: block;
+    text-align: center;
+  }
+}
+#game-begin {
+  background: #574AE2;
+  height: 100vh;
+  width: 100vw;
+  h1 {
+    color: #fff;
+  }
+  .text-effect {
+    position: relative;
+    
+    // The blend modes mute the colors, so let's bump them up
+    filter: contrast(110%) brightness(190%);
+  }
+
+  .neon {
+    position: relative;
+    text-shadow: 0 0 2rem rgba(red, 0.2);
+
+    &::before,
+    &::after {
+      // Add two copies of the text on their own layer
+      content: attr(data-text);
+      
+      color: red;
+      
+      // And blur them to create the neon effect with the blend-mode below
+      filter: blur(0.01em);
+      
+      position: absolute;
+      top: 0; left: 0;
+      pointer-events: none;
+    }
+    
+    // Set the top copy to difference. This creates the knock-out effect with a bit of glow
+    &::after {
+      mix-blend-mode: difference;
+    }
+  }
+  
+  //=== Pen styling, ignore
+
+  .text-effect { 
+    flex: 0 1 0;
+    text-align: center;
+  }
+
+  // Style text
+  .neon {
+    display: inline-block;
+    font: 700 4em/1 serif;
+    text-transform: uppercase;
+    margin: 0;
+    
+    &:focus { outline: none; border: 1px dotted white; }
+  }
+
+  // Center everything
+  body {
+    background: black;
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  button {
+    background: #FFFF00;
+    cursor: pointer;
+    box-shadow: 4px 6px #e3de66;
+    margin: 0 auto;
+    display: block;
+  }
+}
